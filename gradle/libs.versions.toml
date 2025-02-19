@@ -1,0 +1,33 @@
+[versions]
+kotlin = "2.1.0"
+paperYAML = "0.6.0"
+runPaper = "2.3.1"
+paperWeight = "2.0.0-beta.14"
+
+exposed = "0.59.0"
+h2 = "2.3.232"
+igf = "1.0.1"
+
+paper = "1.21.4-R0.1-SNAPSHOT"
+
+[libraries]
+paper = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+
+# > Exposed < #
+exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
+exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exposed" }
+exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
+exposed-json = { module = "org.jetbrains.exposed:exposed-json", version.ref = "exposed" }
+exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed" }
+# > ------ < #
+
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+
+igf = { module = "net.rk4z:igf", version.ref = "igf" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+paperYAML = { id = "net.minecrell.plugin-yml.paper", version.ref = "paperYAML" }
+runPaper = { id = "xyz.jpenilla.run-paper", version.ref = "runPaper" }
+paperWeight = { id = "io.papermc.paperweight.userdev", version.ref = "paperWeight" }
