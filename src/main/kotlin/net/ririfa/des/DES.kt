@@ -3,12 +3,12 @@ package net.ririfa.des
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class DES : JavaPlugin() {
 	companion object {
-		val thread: ScheduledExecutorService = Executors.newScheduledThreadPool(2)
+		val logger: Logger = LoggerFactory.getLogger(DES::class.simpleName)
 
 		val get: DES
 			get() = getPlugin(DES::class.java)
@@ -17,7 +17,6 @@ class DES : JavaPlugin() {
 	val dataFile = dataFolder.resolve("data.db")
 
 	override fun onLoad() {
-
 	}
 
 	override fun onEnable() {
