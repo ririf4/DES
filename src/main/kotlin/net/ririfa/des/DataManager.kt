@@ -1,20 +1,41 @@
 package net.ririfa.des
 
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.transactions.transaction
 
 object DataManager {
-	var memoryDB: Database? = null
-	var fileDB: Database? = null
+	val URL: String? = System.getProperty("des.db.url")
+	val USER: String? = System.getProperty("des.db.user")
+	val PW: String? = System.getProperty("des.db.password")
+
+	lateinit var dataBase: Database
+		private set
 
 	fun setUpDatabase() {
-		memoryDB = Database.connect(
-			"jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;MV_STORE=TRUE;AUTO_SERVER=TRUE",
-			driver = "org.h2.Driver"
+		if (URL == null || USER == null || PW == null) {
+			throw IllegalStateException("データベースURL/USER/PWがセットされていません、プロパティ'des.db.url'を設定してください")
+		}
+		dataBase = Database.connect(
+			"jdbc:postgresql://$URL",
+			driver = "org.postgresql.Driver",
+			user = USER,
+			password = PW
 		)
 
-		fileDB = Database.connect(
-			"jdbc:h2:file:${DF};MODE=PostgreSQL;MV_STORE=TRUE;AUTO_SERVER=TRUE",
-			driver = "org.h2.Driver"
-		)
+		transaction(dataBase) {
+			SchemaUtils.create(Tables.Players)
+		}
+	}
+
+	object Tables {
+		object Players : Table("players") {
+			val uuid = uuid("uuid")
+			val name = text("name")
+			val balance = double("balance")
+
+			override val primaryKey = PrimaryKey(uuid)
+		}
 	}
 }

@@ -5,13 +5,14 @@ runPaper = "2.3.1"
 paperWeight = "2.0.0-beta.14"
 
 exposed = "0.59.0"
-h2 = "2.3.232"
+postgre = "42.7.5"
 igf = "1.0.1"
 
 paper = "1.21.4-R0.1-SNAPSHOT"
 
+
 [libraries]
-paper = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
 
 # > Exposed < #
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
@@ -21,7 +22,7 @@ exposed-json = { module = "org.jetbrains.exposed:exposed-json", version.ref = "e
 exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datetime", version.ref = "exposed" }
 # > ------ < #
 
-h2 = { module = "com.h2database:h2", version.ref = "h2" }
+postgre = { module = "org.postgresql:postgresql", version.ref = "postgre" }
 
 igf = { module = "net.rk4z:igf", version.ref = "igf" }
 

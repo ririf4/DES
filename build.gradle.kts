@@ -20,19 +20,19 @@ repositories {
 dependencies {
 	libs.apply {
 		paperweight.paperDevBundle(versions.paper.get())
-		implementation(paper)
+		implementation(paper.api)
 		implementation(exposed.core)
 		implementation(exposed.jdbc)
 		implementation(exposed.dao)
 		implementation(exposed.json)
 		implementation(exposed.kotlin.datetime)
-		implementation(h2)
+		implementation(postgre)
 		implementation(igf)
 	}
 }
 
 paper {
-	name = "${rootProject.name}-${project.name}"
+	name = "${project.name}-${project.version}"
 	description = project.description.toString()
 	version = project.version.toString()
 	apiVersion = "1.21"
