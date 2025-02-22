@@ -1,5 +1,8 @@
 package net.ririfa.des
 
+import net.ririfa.des.manager.DataManager
+import net.ririfa.des.modules.Modules
+import net.ririfa.des.modules.economy.Economy
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
@@ -17,10 +20,16 @@ class DES : JavaPlugin() {
 	val dataFile = dataFolder.resolve("data.db")
 
 	override fun onLoad() {
+		Logger.info("DESを読み込み中です")
+
+		Logger.info("データベースに接続します")
+		DataManager.setUpDatabase()
 	}
 
 	override fun onEnable() {
-
+		Modules.registerModules(
+			Economy()
+		)
 	}
 
 	override fun onDisable() {

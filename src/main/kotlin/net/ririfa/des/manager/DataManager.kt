@@ -1,5 +1,6 @@
-package net.ririfa.des
+package net.ririfa.des.manager
 
+import net.ririfa.des.util.DB
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.Table
@@ -17,7 +18,7 @@ object DataManager {
 		if (URL == null || USER == null || PW == null) {
 			throw IllegalStateException("データベースURL/USER/PWがセットされていません、プロパティ'des.db.url'を設定してください")
 		}
-		dataBase = Database.connect(
+		dataBase = Database.Companion.connect(
 			"jdbc:postgresql://$URL",
 			driver = "org.postgresql.Driver",
 			user = USER,
@@ -34,6 +35,7 @@ object DataManager {
 			val uuid = uuid("uuid")
 			val name = text("name")
 			val balance = double("balance")
+
 
 			override val primaryKey = PrimaryKey(uuid)
 		}

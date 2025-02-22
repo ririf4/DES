@@ -9,5 +9,10 @@ object Modules {
 
 	fun registerModules(vararg modules: Module) {
 		this.modules.addAll(modules)
+		modules.forEach { it.register() }
+	}
+
+	fun <T : Module> getModule(clazz: Class<T>): T {
+		return modules.first { it.clazz == clazz } as T
 	}
 }
