@@ -1,9 +1,12 @@
 package net.ririfa.des.manager
 
-import net.ririfa.des.util.DB
+import net.ririfa.des.modules.economy.util.Player
+import net.ririfa.des.util.DBT
+import net.ririfa.des.util.ShortUUID
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object DataManager {
@@ -30,14 +33,36 @@ object DataManager {
 		}
 	}
 
+	fun createNewPlayerToDB(player: Player) {
+
+	}
+
+	fun getPlayerData(shortUUID: ShortUUID): Player? {
+		return DBT<Player?> {
+			Tables.Players
+				.selectAll()
+				.where { Tables.Players.shortUUID eq shortUUID.toString() }
+				.singleOrNull()
+				?.let {
+					Player.build(
+						uuid = it[Tables.Players.shortUUID],
+						name = it[Tables.Players.name],
+						balance = it[Tables.Players.balance]
+					)
+				}
+		}
+	}
+
 	object Tables {
 		object Players : Table("players") {
-			val uuid = uuid("uuid")
+			// ShortStringを格納する（UUIDよりも短いのでデータベースの容量を節約できる(わずかに)）
+			/** [net.ririfa.des.util.ShortUUID] **/
+			// あんまり"_"を使いたくないよぉ～
+			val shortUUID = text("short_uuid")
 			val name = text("name")
 			val balance = double("balance")
 
-
-			override val primaryKey = PrimaryKey(uuid)
+			override val primaryKey = PrimaryKey(shortUUID)
 		}
 	}
 }

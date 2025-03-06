@@ -24,6 +24,13 @@ class ShortUUID internal constructor(private val uuid: UUID) : Comparable<ShortU
         fun fromUUID(uuidString: String): ShortUUID = ShortUUID(UUID.fromString(uuidString))
 
         /**
+         * Creates a ShortUUID from a UUID.
+         * @param uuid The UUID.
+         * @return A new ShortUUID instance.
+         */
+        fun fromUUID(uuid: UUID): ShortUUID = ShortUUID(uuid)
+
+        /**
          * Creates a ShortUUID from a short string representation.
          * @param shortString The short string representation of the UUID.
          * @return A new ShortUUID instance.

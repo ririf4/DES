@@ -4,12 +4,12 @@ paperYAML = "0.6.0"
 runPaper = "2.3.1"
 paperWeight = "2.0.0-beta.14"
 
-exposed = "0.59.0"
+exposed = "0.60.0"
 postgre = "42.7.5"
 igf = "1.0.1"
 
 paper = "1.21.4-R0.1-SNAPSHOT"
-
+vault = "1.7"
 
 [libraries]
 paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
@@ -25,6 +25,8 @@ exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datet
 postgre = { module = "org.postgresql:postgresql", version.ref = "postgre" }
 
 igf = { module = "net.rk4z:igf", version.ref = "igf" }
+
+vault = { module = "com.github.MilkBowl:VaultAPI", version.ref = "vault" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

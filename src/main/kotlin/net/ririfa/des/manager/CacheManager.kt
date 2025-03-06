@@ -1,32 +1,28 @@
 package net.ririfa.des.manager
 
+import net.ririfa.des.DB
 import net.ririfa.des.modules.economy.util.Player
-import net.ririfa.des.util.DB
-import org.jetbrains.exposed.sql.selectAll
-import java.util.UUID
+import net.ririfa.des.util.ShortUUID
 
 object CacheManager {
-	val playerCache = mutableMapOf<UUID, Player>()
+	// ShortUUID -> Player
+	val playerCache = mutableMapOf<String, Player>()
 
-	fun getPlayerData(uuid: UUID): Player? {
-		return playerCache[uuid] ?: DB<Player?> {
-			DataManager.Tables.Players
-				.selectAll()
-				.where { DataManager.Tables.Players.uuid eq uuid }
-				.singleOrNull()
-				?.let {
-					val player = Player(
-						uuid = it[DataManager.Tables.Players.uuid],
-						name = it[DataManager.Tables.Players.name],
-						balance = it[DataManager.Tables.Players.balance]
-					)
-					playerCache[uuid] = player
-					player
-				}
+	fun getPlayerData(uuid: ShortUUID): Player? {
+		val su = uuid.toString()
+		return playerCache[su] ?: run {
+			DB.getPlayerData(uuid)?.also {
+				playerCache[su] = it
+			}
 		}
 	}
 
-	fun erasePlayerData(uuid: UUID) {
-		playerCache.remove(uuid)
+	fun erasePlayerData(uuid: ShortUUID) {
+		val su = uuid.toString()
+		playerCache.remove(su)
+	}
+
+	fun clearnUpCache() {
+
 	}
 }

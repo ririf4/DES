@@ -5,6 +5,9 @@ import net.ririfa.des.modules.Modules
 import net.ririfa.des.modules.economy.Economy
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.plugin.java.JavaPlugin
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -27,9 +30,13 @@ class DES : JavaPlugin() {
 	}
 
 	override fun onEnable() {
-		Modules.registerModules(
-			Economy()
-		)
+		Modules.registerModules(server) {
+			listOf(
+				Economy()
+			)
+		}
+
+		Modules.getModule(Economy::class)
 	}
 
 	override fun onDisable() {
@@ -40,5 +47,10 @@ class DES : JavaPlugin() {
 		return false
 	}
 
+	private val listener = object : Listener {
+		@EventHandler
+		fun onPlayerJoin(event: PlayerJoinEvent) {
 
+		}
+	}
 }

@@ -15,19 +15,24 @@ description = "A original plugin for DES server."
 repositories {
 	mavenCentral()
 	maven("https://repo.papermc.io/repository/maven-public/")
+	maven("https://jitpack.io")
 }
 
 dependencies {
 	libs.apply {
+		// > == Paper == < \\
 		paperweight.paperDevBundle(versions.paper.get())
 		implementation(paper.api)
-		implementation(exposed.core)
-		implementation(exposed.jdbc)
-		implementation(exposed.dao)
-		implementation(exposed.json)
-		implementation(exposed.kotlin.datetime)
-		implementation(postgre)
-		implementation(igf)
+		// > == Exposed == < \\
+		library(exposed.core)
+		library(exposed.jdbc)
+		library(exposed.dao)
+		library(exposed.json)
+		library(exposed.kotlin.datetime)
+		library(postgre)
+		// > == Other == < \\
+		library(igf)
+		compileOnly(vault)
 	}
 }
 
