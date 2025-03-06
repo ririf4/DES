@@ -9,7 +9,7 @@ object CacheManager {
 	val playerCache = mutableMapOf<String, Player>()
 
 	fun getPlayerData(uuid: ShortUUID): Player? {
-		val su = uuid.toString()
+		val su = uuid.toShortString()
 		return playerCache[su] ?: run {
 			DB.getPlayerData(uuid)?.also {
 				playerCache[su] = it
@@ -18,7 +18,7 @@ object CacheManager {
 	}
 
 	fun erasePlayerData(uuid: ShortUUID) {
-		val su = uuid.toString()
+		val su = uuid.toShortString()
 		playerCache.remove(su)
 	}
 

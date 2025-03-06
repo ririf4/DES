@@ -23,18 +23,14 @@ class Economy : Module(
 		isEnabled.set(true)
 	}
 
-	override fun isEnabled(): Boolean {
-		return DP.isEnabled
-	}
+	override fun isEnabled(): Boolean =
+		DP.isEnabled
 
-	override fun getName(): String? {
-		return this.name
-	}
+	override fun getName(): String? =
+		this.name
 
-	override fun hasBankSupport(): Boolean {
-		// 銀行機能は必ず提供するため常にtrueを返す
-		return true
-	}
+	override fun hasBankSupport(): Boolean =
+		true
 
 	override fun fractionalDigits(): Int = 2
 	override fun currencyNamePlural(): String? = Config.currency[Currency.PLURAL]
