@@ -110,18 +110,19 @@ class Economy : Module(
 		amount: Double
 	): EconomyResponse? {
 		// TODO: 残高交換
+		return null
 	}
 
 	override fun depositPlayer(playerName: String?, amount: Double): EconomyResponse? {
-
+		return null
 	}
 
 	override fun depositPlayer(player: OfflinePlayer?, amount: Double): EconomyResponse? {
-
+		return null
 	}
 
 	override fun depositPlayer(playerName: String?, worldName: String?, amount: Double): EconomyResponse? {
-
+		return null
 	}
 
 	override fun depositPlayer(
@@ -129,7 +130,7 @@ class Economy : Module(
 		worldName: String?,
 		amount: Double
 	): EconomyResponse? {
-
+		return null
 	}
 
 	// 口座は自動で必ず作成されるためこれらは実装しない
@@ -140,54 +141,54 @@ class Economy : Module(
 
 	// TODOゾーン
 	override fun bankBalance(name: String?): EconomyResponse? {
-
+		return null
 	}
 
 	override fun bankHas(name: String?, amount: Double): EconomyResponse? {
-
+		return null
 	}
 
 	override fun bankWithdraw(name: String?, amount: Double): EconomyResponse? {
-
+		return null
 	}
 
 	override fun bankDeposit(name: String?, amount: Double): EconomyResponse? {
-
+		return null
 	}
 
 	override fun isBankOwner(name: String?, playerName: String?): EconomyResponse? {
-
+		return null
 	}
 
 	override fun isBankOwner(name: String?, player: OfflinePlayer?): EconomyResponse? {
-
+		return null
 	}
 
 	override fun isBankMember(name: String?, playerName: String?): EconomyResponse? {
-
+		return null
 	}
 
 	override fun isBankMember(name: String?, player: OfflinePlayer?): EconomyResponse? {
-
+		return null
 	}
 
 	override fun getBanks(): List<String?>? {
-
+		return null
 	}
 
 	override fun createPlayerAccount(playerName: String?): Boolean {
-
+		return false
 	}
 
 	override fun createPlayerAccount(player: OfflinePlayer?): Boolean {
-
+		return false
 	}
 
 	override fun createPlayerAccount(playerName: String?, worldName: String?): Boolean {
-
+		return false
 	}
 
 	override fun createPlayerAccount(player: OfflinePlayer?, worldName: String?): Boolean {
-
+		return false
 	}
 }
