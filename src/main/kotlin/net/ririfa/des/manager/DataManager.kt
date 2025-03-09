@@ -3,11 +3,7 @@ package net.ririfa.des.manager
 import net.ririfa.des.modules.economy.util.Player
 import net.ririfa.des.util.DBT
 import net.ririfa.des.util.ShortUUID
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.*
 
 object DataManager {
 	// 情報よこしやがれください from properties

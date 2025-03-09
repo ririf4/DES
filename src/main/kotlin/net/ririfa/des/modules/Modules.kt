@@ -2,7 +2,6 @@ package net.ririfa.des.modules
 
 import org.bukkit.Server
 import org.bukkit.plugin.java.JavaPlugin
-import kotlin.reflect.KClass
 
 object Modules {
 	private val modules: MutableList<Module> = mutableListOf()
