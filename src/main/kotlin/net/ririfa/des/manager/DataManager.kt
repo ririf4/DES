@@ -10,6 +10,7 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.selectAll
 
 object DataManager {
+	// 情報よこしやがれください from properties
 	val URL: String? = System.getProperty("des.db.url")
 	val USER: String? = System.getProperty("des.db.user")
 	val PW: String? = System.getProperty("des.db.password")
@@ -67,6 +68,7 @@ object DataManager {
 			val shortUUID = text("short_uuid")
 			val name = text("name")
 			val balance = double("balance")
+			val achievements = text("achievements").nullable()
 
 			override val primaryKey = PrimaryKey(shortUUID)
 		}

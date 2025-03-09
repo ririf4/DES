@@ -1,5 +1,6 @@
 package net.ririfa.des
 
+import com.google.gson.Gson
 import net.ririfa.des.manager.DataManager
 import net.ririfa.des.modules.Modules
 import net.ririfa.des.modules.economy.Economy
@@ -8,6 +9,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.plugin.java.JavaPlugin
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -36,7 +38,7 @@ class DES : JavaPlugin() {
 			)
 		}
 
-		Modules.getModule(Economy::class)
+		Modules.getModule(Economy::class.java)
 	}
 
 	override fun onDisable() {
@@ -52,5 +54,14 @@ class DES : JavaPlugin() {
 		fun onPlayerJoin(event: PlayerJoinEvent) {
 
 		}
+
+		@EventHandler
+		fun onPlayerQuit(event: PlayerQuitEvent) {
+			val gson = Gson()
+			val player = event.player
+			val playerInventory = player.inventory
+		}
+
+
 	}
 }

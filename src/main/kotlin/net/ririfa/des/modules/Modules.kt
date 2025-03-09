@@ -24,7 +24,7 @@ object Modules {
 		}
 	}
 
-	fun <T : Module> getModule(clazz: KClass<T>): T {
+	fun <T : Module> getModule(clazz: Class<T>): T {
 		return modules.first { it.clazz == clazz } as T
 	}
 }

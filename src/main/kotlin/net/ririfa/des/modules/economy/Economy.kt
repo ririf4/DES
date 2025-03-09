@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class Economy : Module(
 	name = "Economy",
-	clazz = Economy::class
+	clazz = Economy::class.java
 ), net.milkbowl.vault.economy.Economy {
 	private var isEnabled = AtomicBoolean(false)
 

@@ -6,13 +6,13 @@ import net.ririfa.des.util.ShortUUID
 
 object CacheManager {
 	// ShortUUID -> Player
-	val playerCache = mutableMapOf<String, Player>()
+	val playerCache: MutableMap<String, PlayerCache> = mutableMapOf()
 
 	fun getPlayerData(uuid: ShortUUID): Player? {
 		val su = uuid.toShortString()
-		return playerCache[su] ?: run {
+		return playerCache[su]?.player ?: run {
 			DB.getPlayerData(uuid)?.also {
-				playerCache[su] = it
+				playerCache[su] = PlayerCache(System.currentTimeMillis(), it)
 			}
 		}
 	}
@@ -22,7 +22,17 @@ object CacheManager {
 		playerCache.remove(su)
 	}
 
-	fun clearnUpCache() {
+	fun cleanUpCache() {
+		val now = System.currentTimeMillis()
+		val expirationTime = 1000 * 60 * 10
 
+		playerCache.entries.removeIf { (_, cache) ->
+			now - cache.lastUsed > expirationTime
+		}
 	}
+
+	data class PlayerCache(
+		val lastUsed: Long,
+		val player: Player
+	)
 }

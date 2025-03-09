@@ -25,7 +25,7 @@ class EconomyListener : Listener {
 	@EventHandler
 	fun onPlayerQuit(event: PlayerQuitEvent) {
 		val player = event.player
-		val uuid = player.uniqueId
+		val uuid = ShortUUID.fromUUID(player.uniqueId)
 		CacheManager.erasePlayerData(uuid)
 	}
 }
