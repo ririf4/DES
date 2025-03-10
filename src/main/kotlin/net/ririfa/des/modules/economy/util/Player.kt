@@ -3,7 +3,7 @@ package net.ririfa.des.modules.economy.util
 import net.ririfa.des.util.ShortUUID
 
 @ConsistentCopyVisibility
-data class Player private constructor(
+data class Player internal constructor(
 	val uuid: ShortUUID,
 	val name: String,
 	val balance: Double

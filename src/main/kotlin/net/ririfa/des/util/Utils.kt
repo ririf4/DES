@@ -13,3 +13,8 @@ fun DBT(block: Transaction.() -> Unit) {
 fun <T> DBT(block: Transaction.() -> T): T {
 	return transaction(DataManager.dataBase, block)
 }
+
+fun <T> T.then(block: (T) -> Unit): T {
+	block(this)
+	return this
+}
