@@ -7,10 +7,14 @@ on:
     types: [ opened, synchronize, closed ]
   issues:
     types: [ opened, edited, closed ]
+  workflow_run:
+    workflows: [ "Build" ]
+    types:
+      - completed
 
 jobs:
   call-common-webhook:
-    uses: ririf4/SendToDiscord/.github/workflows/webhook.yml@main
+    uses: ririf4/Actions/.github/workflows/github-to-discord.yml@main
     with:
       event_type: ${{ github.event_name }}
     secrets:
