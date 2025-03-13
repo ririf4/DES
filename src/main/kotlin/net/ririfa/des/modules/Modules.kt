@@ -4,7 +4,7 @@ import org.bukkit.Server
 import org.bukkit.plugin.java.JavaPlugin
 
 object Modules {
-	private val modules: MutableList<Module> = mutableListOf()
+	val modules: MutableList<Module> = mutableListOf()
 
 	fun getModules(): List<Module> {
 		return modules.toList()
@@ -23,7 +23,7 @@ object Modules {
 		}
 	}
 
-	fun <T : Module> getModule(clazz: Class<T>): T {
+	inline fun <reified T : Module> getModule(clazz: Class<T>): T {
 		return modules.first { it.clazz == clazz } as T
 	}
 }

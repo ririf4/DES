@@ -9,7 +9,10 @@ postgre = "42.7.5"
 igf = "1.0.1"
 
 paper = "1.21.4-R0.1-SNAPSHOT"
-vault = "1.7"
+vault = "1.7.1"
+netty = "5.0.0.Alpha2"
+langman = "1.4.3"
+lands = "7.12.7"
 
 [libraries]
 paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
@@ -23,10 +26,11 @@ exposed-kotlin-datetime = { module = "org.jetbrains.exposed:exposed-kotlin-datet
 # > ------ < #
 
 postgre = { module = "org.postgresql:postgresql", version.ref = "postgre" }
-
 igf = { module = "net.rk4z:igf", version.ref = "igf" }
-
 vault = { module = "com.github.MilkBowl:VaultAPI", version.ref = "vault" }
+netty = { module = "io.netty:netty-codec-http", version.ref = "netty" }
+langman = { module = "net.ririfa:langman", version.ref = "langman" }
+lands = { module = "com.github.angeschossen:LandsAPI", version.ref = "lands" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

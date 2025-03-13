@@ -32,7 +32,11 @@ dependencies {
 		library(postgre)
 		// > == Other == < \\
 		library(igf)
+		library(netty)
 		compileOnly(vault)
+		compileOnly(lands)
+
+		implementation(langman)
 	}
 }
 

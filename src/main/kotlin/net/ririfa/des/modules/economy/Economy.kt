@@ -1,10 +1,7 @@
 package net.ririfa.des.modules.economy
 
 import net.milkbowl.vault.economy.EconomyResponse
-import net.ririfa.des.Config
-import net.ririfa.des.DB
-import net.ririfa.des.DC
-import net.ririfa.des.DP
+import net.ririfa.des.*
 import net.ririfa.des.config.ConfigManager.Currency
 import net.ririfa.des.modules.Module
 import net.ririfa.des.util.ShortUUID
@@ -12,6 +9,7 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.Server
 import java.util.concurrent.atomic.AtomicBoolean
 
+@Suppress("OVERRIDE_DEPRECATION")
 class Economy : Module(
 	name = "Economy",
 	clazz = Economy::class.java
@@ -224,32 +222,31 @@ class Economy : Module(
 	}
 	// endregion
 
-	// TODO: 要件等 -> 土地保護と連携、国の口座を参照する？
+	// region isBankOwner
 	override fun isBankOwner(name: String?, playerName: String?): EconomyResponse? =
 		isBankOwner(name, playerName?.let { DP.server.getOfflinePlayer(it) })
 
-	override fun isBankOwner(name: String?, player: OfflinePlayer?): EconomyResponse? {
-		return null
-	}
+	override fun isBankOwner(name: String?, player: OfflinePlayer?): EconomyResponse? =
+		DES.le.isBankOwner(name, player)
+	// endregion
 
+	// region isBankMember
 	override fun isBankMember(name: String?, playerName: String?): EconomyResponse? =
 		isBankMember(name, playerName?.let { DP.server.getOfflinePlayer(it) })
 
-	override fun isBankMember(name: String?, player: OfflinePlayer?): EconomyResponse? {
-		return null
-	}
+	override fun isBankMember(name: String?, player: OfflinePlayer?): EconomyResponse? =
+		DES.le.isBankMember(name, player)
+	// endregion
 
-	override fun bankWithdraw(name: String?, amount: Double): EconomyResponse? {
-		return null
-	}
+	override fun bankBalance(name: String?): EconomyResponse? =
+		DES.le.bankBalance(name)
 
-	override fun bankDeposit(name: String?, amount: Double): EconomyResponse? {
-		return null
-	}
+	override fun bankDeposit(name: String?, amount: Double): EconomyResponse? =
+		DES.le.bankDeposit(name, amount)
 
-	override fun bankBalance(name: String?): EconomyResponse? {
-		return null
-	}
+	override fun bankWithdraw(name: String?, amount: Double): EconomyResponse? =
+		DES.le.bankWithdraw(name, amount)
+
 
 	// TODOゾーン(実装しないかも？)
 	override fun bankHas(name: String?, amount: Double): EconomyResponse? {
