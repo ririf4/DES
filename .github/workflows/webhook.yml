@@ -1,0 +1,19 @@
+name: Use GitHub to Discord Webhook
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [ opened, synchronize, closed ]
+  issues:
+    types: [ opened, edited, closed ]
+
+jobs:
+  call-common-webhook:
+    uses: ririf4/SendToDiscord/.github/workflows/webhook.yml@main
+    with:
+      event_type: ${{ github.event_name }}
+    secrets:
+      DISCORD_COMMIT_WEBHOOK: ${{ secrets.DISCORD_COMMIT_WEBHOOK }}
+      DISCORD_PR_WEBHOOK: ${{ secrets.DISCORD_PR_WEBHOOK }}
+      DISCORD_ISSUE_WEBHOOK: ${{ secrets.DISCORD_ISSUE_WEBHOOK }}

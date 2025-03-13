@@ -80,6 +80,7 @@ class DES : JavaPlugin() {
 	private val listener = object : Listener {
 		@EventHandler
 		fun onPlayerJoin(event: PlayerJoinEvent) {
+
 		}
 
 		@EventHandler
@@ -87,6 +88,7 @@ class DES : JavaPlugin() {
 			val gson = Gson()
 			val player = event.player
 			val playerInventory = player.inventory
+
 		}
 	}
 }
